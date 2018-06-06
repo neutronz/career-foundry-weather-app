@@ -1,0 +1,9 @@
+== render 'form'
+
+.row
+  .col-10.col-md-5.mx-auto
+    h4.card-title#notice=notice
+    h1
+      = @weather.now["main"]["temp"]
+      | &deg; F
+    h3= @weather.now["weather"][0]["description"].to_s.capitalize

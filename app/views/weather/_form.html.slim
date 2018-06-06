@@ -1,0 +1,18 @@
+.row
+  .col-10.col-md-5.mx-auto
+    .card
+      .card-body
+        h4.card-title Enter your city and country to get the latest weather.
+        = simple_form_for(@weather, class: "form-inline") do |f|
+          = f.error_notification
+          = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+          .form-group.row
+            .col-sm-12
+              = f.input :city, label: false, placeholder: "City", class: "form-control"
+          .form-group.row
+            .col-sm-9
+              = f.input :country, label: false, class: "form-control", include_blank: 'Select a country' 
+
+          .form-actions
+            = f.button :submit, class: "btn btn-primary", value: "Get the weather"

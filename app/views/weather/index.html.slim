@@ -1,0 +1,19 @@
+h1 Listing weathers
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @weathers.each do |weather|
+      tr
+        td = link_to 'Show', weather
+        td = link_to 'Edit', edit_weather_path(weather)
+        td = link_to 'Destroy', weather, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Weather', new_weather_path
