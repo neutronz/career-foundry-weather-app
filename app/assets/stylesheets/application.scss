@@ -13,3 +13,25 @@
  */
 @import "bootstrap";
 @import "bootstrap4-charming.min";
+
+body {
+  background-color: white;
+  color: #373a3c;
+
+  .title {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    margin-bottom: 5rem;
+    min-height: 20%;
+    height: 20%;
+    background-color: #373a3c;
+    color: white;
+  }
+}
+
+.field_with_errors {
+  .error {
+    @extend .alert;
+    color: red;
+  }
+}

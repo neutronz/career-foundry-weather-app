@@ -8,6 +8,7 @@ class WeatherController < ApplicationController
 
   # GET /weathers/1
   def show
+    @notice = "#{@weather.city.titleize}, #{@weather.country.upcase}"
   end
 
   # GET /weathers/new
@@ -21,10 +22,11 @@ class WeatherController < ApplicationController
 
   # POST /weathers
   def create
-    @weather = Weather.new(weather_params)
+    @weather = Weather.find_or_initialize_by(weather_params)
 
     if @weather.save
-      render :show, notice: "#{weather_params[:city].capitalize}, #{weather_params[:country].upcase}"
+      @notice = "#{@weather.city.titleize}, #{@weather.country.upcase}"
+      redirect_to @weather
     else
       render :new, errors: @weather.errors
     end
@@ -33,7 +35,7 @@ class WeatherController < ApplicationController
   # PATCH/PUT /weathers/1
   def update
     if @weather.update(weather_params)
-      redirect_to @weather, notice: 'Weather was successfully updated.'
+      redirect_to @weather, notice: "#{@weather.city.titleize}, #{@weather.country.upcase}"
     else
       render :edit
     end

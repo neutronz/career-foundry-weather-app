@@ -1,18 +1,25 @@
 .row
-  .col-10.col-md-5.mx-auto
+  .col-10.col-md-6.mx-auto
     .card
       .card-body
         h4.card-title Enter your city and country to get the latest weather.
-        = simple_form_for(@weather, class: "form-inline") do |f|
-          = f.error_notification
-          = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+        = simple_form_for(@weather, class: "form-inline", html: { novalidate: false }) do |f|
+          .
+          - if f.object.errors.any?
+            .alert.alert-danger.alert-dismissible.show.fade role="alert"
+              button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                span aria-hidden="true" X
+              h4.text-center= f.error_notification
+              - if !f.object.errors[:now].blank?
+                ul
+                  li= f.error_notification message: f.object.errors[:now].to_sentence
 
           .form-group.row
             .col-sm-12
-              = f.input :city, label: false, placeholder: "City", class: "form-control"
+              = f.input :city, label: false, placeholder: "City", class: "form-control", required: true
           .form-group.row
-            .col-sm-9
-              = f.input :country, label: false, class: "form-control", include_blank: 'Select a country' 
+            .col-sm-12
+              = f.input :country, label: false, class: "form-control", include_blank: 'Select a country', required: true
 
           .form-actions
             = f.button :submit, class: "btn btn-primary", value: "Get the weather"

@@ -1,9 +1,18 @@
-== render 'form'
+.row.title
+  .col-xl-12.text-center
+    h1 Today's Weather In #{@notice || 'Your City'}
 
-.row
-  .col-10.col-md-5.mx-auto
-    h4.card-title#notice=notice
-    h1
-      = @weather.now["main"]["temp"]
-      | &deg; F
-    h3= @weather.now["weather"][0]["description"].to_s.capitalize
+- if @weather.present? and @weather.now.present?
+  .row
+    .col-10.col-md-5.mx-auto
+      h1.text-center Currently in #{@weather.city}
+      .alert.alert-primary.text-center role="alert"
+        h1
+          = @weather.now["main"]["temp"]
+          | &deg; F
+        h3= @weather.now["weather"][0]["description"].to_s.capitalize
+
+  .row
+    .col-10.col-md-5.mx-auto
+      nav
+        = link_to "< Find the weather for another city.", root_path

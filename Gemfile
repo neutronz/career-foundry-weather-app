@@ -38,6 +38,7 @@ gem 'turbolinks', '~> 5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'rails_12factor'
+gem 'figaro'
 
 gem 'open-weather', require: 'open_weather'
 gem 'faraday'

@@ -1,8 +1,7 @@
 module  WeatherService
   def self.get_current(city, country, units="imperial")
-    appid = "20451c138a84eedf1844033e41be165b"
+    appid = ENV["WEATHER_KEY"]
     resp = Faraday.get URI.encode("http://api.openweathermap.org/data/2.5/weather?q=#{city},#{country}&APPID=#{appid}&units=#{units}")
-    byebug
-    JSON.parse(resp.body) if resp.body
+    resp.body if JSON.parse(resp.body)["cod"].to_s == "200"
   end
 end
