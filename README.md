@@ -1,24 +1,48 @@
-# README
+# Weather Service Interview
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Description
 
-Things you may want to cover:
+Basic weather application that retrieves the current weather from the OpenWeather API
 
-* Ruby version
+### Implemention Notes and Improvements
 
-* System dependencies
+- I've configured the application to use webpacker and ES6 however there's not a lot of javascript here to be used. In a full application, I'd use a component based framework like React.
+- The weather service is wrapped in a service object. There are stubbed tests for this and normally these would be built first.
+- The weather model is a database model which allows for some lightweight caching. The data is refreshed at minimum every 20 minutes and this should be moved to a config variable.
 
-* Configuration
+## Getting Started
 
-* Database creation
+Copy config/application.yml.sample file to config/application.yml, this is where your OpenWeather API key can be added.
 
-* Database initialization
+Install Ruby2.4+.
+Install Bundler:
 
-* How to run the test suite
+```
+$ gem install bundler
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Run bundle install to install all required gems
 
-* Deployment instructions
+```
+$ bundle install
+```
 
-* ...
+Build your local databases
+
+```
+$ bundle exec rails db:create db:migrate
+```
+
+```
+$ bundle exec rails s
+```
+
+Point your browser to localhost:3000
+
+## Development
+
+To run the rspec test suite:
+
+```
+$ bundle exec rspec
+```
